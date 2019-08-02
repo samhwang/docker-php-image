@@ -1,0 +1,11 @@
+# OS specifics
+.DS_Store
+thumbs.db
+
+# Docker MySQL cache, SSL keys and .env
+.docker/mysql/
+.docker/ssl/
+.env
+
+# IDE Files
+.vscode
