@@ -14,7 +14,7 @@ apt-get clean;
 rm -rf /var/lib/apt/lists/* /usr/share/man/* /usr/share/doc/*;
 
 # Enable Apache2 Modules
-a2enmod actions proxy_fcgi rewrite ssl;
+a2enmod macro actions proxy_fcgi rewrite ssl;
 chmod 6444 /var/log/apache2;
 chown -R www-data:www-data /var/www/html;
 
