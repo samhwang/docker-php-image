@@ -1,6 +1,9 @@
 FROM php:7.3-fpm-buster
 LABEL maintainer="Sam Huynh <samhwang2112.dev@gmail.com>"
 
+ARG ENVIRONMENT=development
+ENV ENVIRONMENT="${ENVIRONMENT}"
+
 WORKDIR /var/www/html
 COPY . .
 RUN bash .docker/install.sh

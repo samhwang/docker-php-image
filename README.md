@@ -19,17 +19,32 @@ honest opinion. This may change in the future.
 
 ## Running the image
 
+```bash
+docker run -d --rm -p 80:80 -p 443:443 --name=testing samhwang/php
+curl http://localhost
+curl https://localhost/
+docker stop testing
+```
+
+## Building the image locally
+
 You will need to generate self-signed SSL keys first, and
 put them in .docker/ssl, and then use `docker run` to run
 the image.
 
 ```bash
+git clone git@github.com:samhwang/docker-php.git
 openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout .docker/server.key -out .docker/server.crt
+docker build -f .docker/Dockerfile -t samhwang/php:latest .
+```
 
-docker run -d --rm -p 80:80 -p 443:443 --name=testing samhwang/php
-curl http://localhost
-curl https://localhost/
-docker stop testing
+You can also add build arguments for environment such as
+`staging` and `production` to prevent mailhog being installed.
+After that, remove the `mailhog` link in the `www01` container,
+and remove the `mailhog` container in the compose file.
+
+```bash
+docker build -f .docker/Dockerfile -t samhwang/php:latest --build-arg ENVIRONMENT=[development,staging,production] .
 ```
 
 ## Composing the network
@@ -45,8 +60,3 @@ And then you can run these commands:
 docker-compose up
 docker-compose down
 ```
-
-## TODO
-
-- Add support to change environment between dev and staging/production.
-- Install prestissimo via composer.

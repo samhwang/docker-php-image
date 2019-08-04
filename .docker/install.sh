@@ -2,10 +2,12 @@
 apt-get update;
 apt-get install -y --no-install-recommends apache2 wget libjpeg62-turbo-dev libpng-dev libfreetype6-dev libzip-dev;
 
-# Integrate mailhog for self-SMTP email testing
-wget -O /usr/bin/mhsendmail 'https://github.com/mailhog/mhsendmail/releases/download/v0.2.0/mhsendmail_linux_amd64';
-chmod 0755 /usr/bin/mhsendmail;
-echo 'sendmail_path = "/usr/bin/mhsendmail --smtp-addr=mailhog:1025"' > /usr/local/etc/php/php.ini;
+if [ $ENVIRONMENT == 'development' ]; then
+    # Integrate mailhog for self-SMTP email testing
+    wget -O /usr/bin/mhsendmail 'https://github.com/mailhog/mhsendmail/releases/download/v0.2.0/mhsendmail_linux_amd64';
+    chmod 0755 /usr/bin/mhsendmail;
+    echo 'sendmail_path = "/usr/bin/mhsendmail --smtp-addr=mailhog:1025"' > /usr/local/etc/php/php.ini;
+fi
 
 # Clean the system
 apt-get purge -y wget;
