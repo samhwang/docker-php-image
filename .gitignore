@@ -4,7 +4,7 @@ thumbs.db
 
 # Docker MySQL cache, SSL keys and .env
 .docker/mysql/
-.docker/ssl/
+.docker/apache2/ssl/
 .env
 
 # IDE Files

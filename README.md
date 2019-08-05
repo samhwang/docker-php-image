@@ -28,13 +28,18 @@ docker stop testing
 
 ## Building the image locally
 
-You will need to generate self-signed SSL keys first, and
-put them in .docker/ssl, and then use `docker run` to run
-the image.
+By default in development environment, upon buildin the image,
+it will check if there already exists a pair of SSL key files
+and certificate. If not, it will generate one. But if you want
+to generate your own, you can run:
+
+```bash
+openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout .docker/apache/ssl/server.key -out .docker/apache2/ssl/server.crt
+```
 
 ```bash
 git clone git@github.com:samhwang/docker-php.git
-openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout .docker/server.key -out .docker/server.crt
+cd docker-php
 docker build -f .docker/Dockerfile -t samhwang/php:latest .
 ```
 

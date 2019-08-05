@@ -3,6 +3,13 @@ apt-get update;
 apt-get install -y --no-install-recommends apache2 wget libjpeg62-turbo-dev libpng-dev libfreetype6-dev libzip-dev;
 
 if [ $ENVIRONMENT == 'development' ]; then
+    SSLKey='.docker/apache2/ssl/server.key';
+    SSLCert='.docker/apache2/ssl/server.crt';
+    if [ ! -e $SSLKey ] && [ ! -e $SSLCert ]; then
+        # Generate SSL keys if not exist
+        openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout .docker/apache2/ssl/server.key -out .docker/apache2/ssl/server.crt -subj "/C=AU/ST=VIC/L=Melbourne/O=Localhost/CN=Localhost";
+    fi
+
     # Integrate mailhog for self-SMTP email testing
     wget -O /usr/bin/mhsendmail 'https://github.com/mailhog/mhsendmail/releases/download/v0.2.0/mhsendmail_linux_amd64';
     chmod 0755 /usr/bin/mhsendmail;
