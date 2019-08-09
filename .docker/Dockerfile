@@ -2,10 +2,9 @@ FROM php:7.3-fpm-buster
 LABEL maintainer="Sam Huynh <samhwang2112.dev@gmail.com>"
 
 ARG ENVIRONMENT=development
-ENV ENVIRONMENT="${ENVIRONMENT}"
+ARG XDEBUG_ENABLE=true
 ENV SSLKey=".docker/apache2/ssl/server.key"
 ENV SSLCert=".docker/apache2/ssl/server.crt"
-ENV XDEBUG_ENABLE=true
 
 WORKDIR /var/www/html
 COPY . .

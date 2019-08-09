@@ -6,6 +6,7 @@ services:
             dockerfile: '.docker/Dockerfile'
             args: 
                 ENVIRONMENT: development
+                XDEBUG_ENABLE: true
         env_file: '.env'
         image: samhwang/php
         links:
