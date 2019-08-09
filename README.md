@@ -1,6 +1,6 @@
 # Docker PHP Environment
 
-My general use Docker PHP setup for development.
+A general Docker PHP base setup for development.
 
 ## What does it have
 
@@ -49,7 +49,10 @@ After that, remove the `mailhog` link in the `www01` container,
 and remove the `mailhog` container in the compose file.
 
 ```bash
-docker build -f .docker/Dockerfile -t samhwang/php:latest --build-arg ENVIRONMENT=[development,staging,production] .
+docker build -f .docker/Dockerfile -t samhwang/php:latest \
+    --build-arg ENVIRONMENT=[development,staging,production] \
+    --build-arg XDEBUG_ENABLE=[true,false] \
+    .
 ```
 
 ## Composing the network
