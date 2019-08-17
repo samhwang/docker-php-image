@@ -11,7 +11,7 @@ COPY . .
 
 # Install apache and other OS support for images.
 RUN apt-get update && \
-    apt-get install -y --no-install-recommends apache2 libjpeg62-turbo-dev libpng-dev libfreetype6-dev libzip-dev && \
+    apt-get install -y --no-install-recommends supervisor apache2 libjpeg62-turbo-dev libpng-dev libfreetype6-dev libzip-dev && \
     apt-get autoremove -y && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/* /usr/share/man/* /usr/share/doc/*;
@@ -36,16 +36,20 @@ RUN if [ "$ENVIRONMENT" = 'development' ]; then \
 
 # Enable PHP and Apache modules
 RUN cp -r .docker/apache2/ /etc/ && \
+    cp .docker/supervisor/conf.d/php-fpm.conf /etc/supervisor/conf.d/php-fpm.conf && \
+    cp .docker/supervisor/conf.d/apache2.conf /etc/supervisor/conf.d/apache2.conf && \
     a2enmod macro actions proxy_fcgi rewrite ssl && \
     chmod 6444 /var/log/apache2 && \
     chown -R www-data:www-data /var/www/html && \
     docker-php-ext-configure gd --with-gd --with-jpeg-dir=/usr/include --with-png-dir=/usr/include  --with-freetype-dir=/usr/include && \
     docker-php-ext-configure zip --with-libzip && \
     docker-php-ext-install pdo_mysql mysqli gd zip && \
-    rm -rf .docker/ && \
-    service apache2 restart
+    rm -rf .docker/
+
+# Install composer packages
+
 
 # Running both php-fpm and apache in foreground to intercept connections
 STOPSIGNAL SIGTERM
 EXPOSE 80 443
-CMD php-fpm -D; apachectl -D FOREGROUND;
+CMD supervisord -n -c /etc/supervisor/supervisord.conf;
