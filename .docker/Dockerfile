@@ -46,9 +46,6 @@ RUN cp -r .docker/apache2/ /etc/ && \
     docker-php-ext-install pdo_mysql mysqli gd zip && \
     rm -rf .docker/
 
-# Install composer packages
-
-
 # Running both php-fpm and apache in foreground to intercept connections
 STOPSIGNAL SIGTERM
 EXPOSE 80 443
