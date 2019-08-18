@@ -38,8 +38,3 @@ services:
             - "1025:1025"
             - "8025:8025"
         restart: always
-    composer:
-        image: composer
-        command: install --no-interaction --no-plugins --no-scripts --prefer-dist --ignore-platform-reqs
-        volumes: 
-            - .:/app

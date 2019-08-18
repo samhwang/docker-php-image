@@ -1,3 +1,17 @@
+# Install composer dependencies
+FROM composer:1.9 as vendor
+
+COPY composer.json composer.json
+COPY composer.lock composer.lock
+
+RUN composer install \
+    --ignore-platform-reqs \
+    --no-interaction \
+    --no-plugins \
+    --no-scripts \
+    --prefer-dist \
+    --ignore-platform-reqs
+
 FROM php:7.3-fpm-buster
 LABEL maintainer="Sam Huynh <samhwang2112.dev@gmail.com>"
 
@@ -50,6 +64,8 @@ RUN cp .docker/supervisor/conf.d/php-fpm.conf /etc/supervisor/conf.d/php-fpm.con
     if [ "$SERVER" = "apache2" ]; then \
         a2enmod macro actions proxy_fcgi rewrite ssl; \
     fi
+
+COPY --from=vendor /app/vendor/ ./vendor/
 
 # Running both php-fpm and apache in foreground to intercept connections
 STOPSIGNAL SIGTERM
