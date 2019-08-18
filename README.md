@@ -52,6 +52,7 @@ and remove the `mailhog` container in the compose file.
 docker build -f .docker/Dockerfile -t samhwang/php:latest \
     --build-arg ENVIRONMENT=[development,staging,production] \
     --build-arg XDEBUG_ENABLE=[true,false] \
+    --build-arg SERVER=[apache2,nginx] \
     .
 ```
 

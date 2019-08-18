@@ -7,6 +7,7 @@ services:
             args: 
                 ENVIRONMENT: development
                 XDEBUG_ENABLE: true
+                SERVER: apache2
         env_file: '.env'
         image: samhwang/php
         links:
