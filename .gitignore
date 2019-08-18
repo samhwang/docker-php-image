@@ -9,3 +9,7 @@ thumbs.db
 
 # IDE Files
 .vscode
+
+# Composer files
+composer.lock
+/vendor/
