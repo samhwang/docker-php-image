@@ -6,7 +6,7 @@ services:
             dockerfile: '.docker/Dockerfile'
             args: 
                 ENVIRONMENT: development
-                XDEBUG_ENABLE: true
+                XDEBUG_ENABLE: 'true'
                 SERVER: apache2
         env_file: '.env'
         image: samhwang/php:7.3
