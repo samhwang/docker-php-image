@@ -69,4 +69,4 @@ COPY --from=vendor /app/vendor/ ./vendor/
 # Running both php-fpm and apache in foreground to intercept connections
 STOPSIGNAL SIGTERM
 EXPOSE 80 443
-CMD supervisord -n -c /etc/supervisor/supervisord.conf;
+CMD ["supervisord", "-n", "-c", "/etc/supervisor/supervisord.conf"]
