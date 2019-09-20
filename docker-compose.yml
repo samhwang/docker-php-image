@@ -12,7 +12,6 @@ services:
         image: samhwang/php:7.3
         links:
             - db
-            - mailhog
         ports:
             - "80:80"
             - "443:443"
