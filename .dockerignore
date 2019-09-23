@@ -1,6 +1,6 @@
 # Docker files
 .dockerignore
-*/Dockerfile
+*/*Dockerfile*
 docker-compose.yml
 .docker/mysql/
 

@@ -1,15 +1,22 @@
 # Install composer dependencies
 FROM composer:1.9 as vendor
 
+ARG ENVIRONMENT=development
+ENV PARAM="--no-dev -o"
 COPY composer.json composer.json
 
-RUN composer install \
+RUN if [ "$ENVIRONMENT" = "development" ]; then \
+        PARAM=""; \
+    fi; \
+    composer global require hirak/prestissimo; \
+    composer install \
     --ignore-platform-reqs \
     --no-interaction \
     --no-plugins \
     --no-scripts \
     --prefer-dist \
-    --ignore-platform-reqs
+    --ignore-platform-reqs \
+    ${PARAM}
 
 FROM php:7.3-fpm-buster
 LABEL maintainer="Sam Huynh <samhwang2112.dev@gmail.com>"
@@ -54,13 +61,16 @@ RUN docker-php-ext-configure gd --with-gd --with-jpeg-dir=/usr/include --with-pn
     if [ "$SERVER" = "apache2" ]; then \
         a2enmod macro actions proxy_fcgi rewrite ssl; \
     fi; \
+    echo 'error_log = "/dev/stderr"' >> /usr/local/etc/php/php.ini && \
+    echo 'access_log = "/dev/stdout"' >> /usr/local/etc/php/php.ini && \
+    cp .docker/supervisor/supervisord.conf /etc/supervisor/supervisord.conf && \
     cp .docker/supervisor/conf.d/php-fpm.conf /etc/supervisor/conf.d/php-fpm.conf && \
     cp .docker/supervisor/conf.d/${SERVER}.conf /etc/supervisor/conf.d/${SERVER}.conf && \
     cp -r .docker/${SERVER}/ /etc/ && \
     cp -r .docker/ssl/ /etc/ && \
     chmod 6444 /var/log/${SERVER} && \
     chown -R www-data:www-data /var/www/html && \
-    rm -rf .docker/;
+    rm -rf .docker/ /etc/apache2/conf.d;
 
 COPY --from=vendor /app/vendor/ ./vendor/
 
