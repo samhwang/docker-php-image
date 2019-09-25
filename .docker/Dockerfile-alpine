@@ -74,7 +74,7 @@ RUN docker-php-ext-configure gd --with-gd --with-jpeg-dir=/usr/include --with-pn
     cp -r .docker/${SERVER}/ /etc/ && \
     cp -r .docker/ssl/ /etc/ && \
     chmod -R 775 /var/www && \
-    chown -R apache:apache /var/www/html && \
+    chown -R www-data:www-data /var/www/html && \
     rm -rf .docker/ /var/cache/apk/*;
 
 COPY --from=vendor /app/vendor/ ./vendor/
