@@ -17,6 +17,13 @@ should they be separated. To me, I'm deciding on not opening a new
 can of worms right now and stick with the less granular option.
 This may change in the future.
 
+## Supported tags
+
+- `latest`, `7.3`, `7.3-apache`, `7.3-apache-debian`
+- `7.3-apache-alpine`
+- `7.3-nginx`, `7.3-nginx-debian`
+- `7.3-nginx-alpine`
+
 ## Running the image
 
 ```bash
