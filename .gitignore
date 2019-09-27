@@ -2,14 +2,5 @@
 .DS_Store
 thumbs.db
 
-# Docker MySQL cache, SSL keys and .env
-.docker/mysql/
-.docker/apache2/ssl/
-.env
-
 # IDE Files
 .vscode
-
-# Composer files
-composer.lock
-/vendor/
