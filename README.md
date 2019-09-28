@@ -19,9 +19,9 @@ This may change in the future.
 
 ## Supported tags
 
-- `latest`, `7.3`, `7.3-apache`, `7.3-apache-debian`
+- `latest`, `7.3`, `7.3-apache`
 - `7.3-apache-alpine`
-- `7.3-nginx`, `7.3-nginx-debian`
+- `7.3-nginx`
 - `7.3-nginx-alpine`
 
 ## Running the image
