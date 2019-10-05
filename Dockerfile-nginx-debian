@@ -21,6 +21,7 @@ RUN openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /etc/ssl/server.
     cp rootfs/supervisor/conf.d/php-fpm.conf /etc/supervisor/conf.d/php-fpm.conf && \
     cp rootfs/supervisor/conf.d/nginx.conf /etc/supervisor/conf.d/nginx.conf && \
     cp -r rootfs/nginx/ /etc/ && \
+    mv /etc/nginx/conf.d/default.conf /etc/nginx/sites-enabled/default && \
     chmod 6444 /var/log/nginx && \
     chown -R www-data:www-data /var/www/html && \
     rm -rf rootfs/ /etc/apache2/conf.d;
