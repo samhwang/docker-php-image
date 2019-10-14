@@ -3,7 +3,7 @@ LABEL maintainer="Sam Huynh <samhwang2112.dev@gmail.com>"
 
 # Install apache and other OS support for images.
 RUN apk update && \
-    apk add --no-cache bash apache2 apache2-proxy apache2-ssl supervisor libjpeg-turbo-dev libpng-dev freetype-dev libzip-dev sed;
+    apk add --no-cache bash apache2 apache2-proxy apache2-ssl supervisor libjpeg-turbo-dev libpng-dev freetype-dev libzip-dev postgresql-dev;
 
 # Configure Apache, PHP Modules and Supervisor
 WORKDIR /var/www/html
@@ -11,7 +11,7 @@ COPY . .
 RUN openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /etc/ssl/server.key -out /etc/ssl/server.crt -subj "/C=AU/ST=VIC/L=Melbourne/O=Localhost/CN=Localhost"; \
     docker-php-ext-configure gd --with-gd --with-jpeg-dir=/usr/include --with-png-dir=/usr/include  --with-freetype-dir=/usr/include && \
     docker-php-ext-configure zip --with-libzip && \
-    docker-php-ext-install pdo_mysql mysqli gd zip; \
+    docker-php-ext-install pdo_mysql mysqli pdo_pgsql pgsql gd zip; \
     sed -i 's@^#LoadModule actions_module modules/mod_actions\.so@LoadModule actions_module modules/mod_actions.so@' /etc/apache2/httpd.conf && \
     sed -i 's@^#LoadModule macro_module modules/mod_macro\.so@LoadModule macro_module modules/mod_macro.so@' /etc/apache2/httpd.conf && \
     sed -i 's@^#LoadModule rewrite_module modules/mod_rewrite\.so@LoadModule rewrite_module modules/mod_rewrite.so@' /etc/apache2/httpd.conf && \
