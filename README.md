@@ -1,5 +1,7 @@
 # My Docker PHP Image
 
+[![Github Actions](https://github.com/samhwang/docker-php-image/workflows/Build%20Docker%20images/badge.svg)](https://github.com/samhwang/docker-php-image/actions)
+
 A general Docker PHP base setup for development.
 
 ## What does it have
