@@ -8,6 +8,7 @@ thumbs.db
 
 # Project files
 .git/
+.github/
 .gitignore
 *.md
 LICENSE
