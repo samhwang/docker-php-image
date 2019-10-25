@@ -1,4 +1,4 @@
-FROM php:7.3.10-fpm-alpine3.10
+FROM php:7.3.11-fpm-alpine3.10
 LABEL maintainer="Sam Huynh <samhwang2112.dev@gmail.com>"
 
 # Install NGINX and other OS support for images.
