@@ -7,7 +7,7 @@ A general Docker PHP base setup for development.
 
 ## What does it have
 
-- PHP 7.3
+- PHP 7.4
 - Apache / NGINX server
 - Supervisor (to manage PHP and the server)
 - Debian / Alpine OS
@@ -22,10 +22,10 @@ This may change in the future.
 
 ## Supported tags
 
-- `latest`, `7.3`, `7.3-apache`
-- `7.3-apache-alpine`
-- `7.3-nginx`
-- `7.3-nginx-alpine`
+- `latest`, `7.4`, `7.4-apache`
+- `7.4-apache-alpine`
+- `7.4-nginx`
+- `7.4-nginx-alpine`
 
 ## Running the image
 
