@@ -1,6 +1,6 @@
 # Docker files
 .dockerignore
-Dockerfile*
+*.Dockerfile
 
 # OS Specific files
 .DS_Store
