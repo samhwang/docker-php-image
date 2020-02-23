@@ -1,4 +1,4 @@
-FROM php:7.4.2-fpm-buster
+FROM php:7.4.3-fpm-buster
 LABEL maintainer="Sam Huynh <samhwang2112.dev@gmail.com>"
 
 # Install NGINX and other OS support for images.
