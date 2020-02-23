@@ -10,7 +10,8 @@ RUN apt-get update && \
 
 # Configure Apache, PHP Modules and Supervisor
 WORKDIR /var/www/html
-COPY . .
+COPY public ./public
+COPY rootfs ./rootfs
 RUN openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /etc/ssl/server.key -out /etc/ssl/server.crt -subj "/C=AU/ST=VIC/L=Melbourne/O=Localhost/CN=Localhost"; \
     docker-php-ext-configure gd --with-jpeg=/usr/include --with-freetype=/usr/include && \
     docker-php-ext-install pdo_mysql mysqli pdo_pgsql pgsql gd zip && \
