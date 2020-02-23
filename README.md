@@ -1,6 +1,5 @@
 # My Docker PHP Image
 
-![GitHub Workflow Status](https://img.shields.io/github/workflow/status/samhwang/docker-php-image/Build%20Docker%20images?label=Build%20Docker%20Images&style=for-the-badge)
 ![LICENSE](https://img.shields.io/github/license/samhwang/docker-php-image?style=for-the-badge)
 ![Docker Cloud Automated build](https://img.shields.io/docker/cloud/automated/samhwang/php?style=for-the-badge)
 ![Docker Cloud Build Status](https://img.shields.io/docker/cloud/build/samhwang/php?style=for-the-badge)
