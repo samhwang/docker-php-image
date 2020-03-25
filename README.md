@@ -45,5 +45,5 @@ will resort to the default, which is Debian and Apache server.
 ```bash
 git clone git@github.com:samhwang/docker-php-image.git
 cd docker-php
-docker build -f Dockerfile-[APACHE/nginx]-[BLANK/alpine] -t samhwang/php:latest .
+docker build -f [APACHE/nginx]-[BLANK/alpine].Dockerfile -t samhwang/php:latest .
 ```
