@@ -1,0 +1,4 @@
+#!/bin/sh
+
+apachectl -D FOREGROUND
+echo "apache is running"
