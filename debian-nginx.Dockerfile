@@ -24,7 +24,7 @@ RUN openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /etc/ssl/server.
     mv /etc/nginx/conf.d/default.conf /etc/nginx/sites-enabled/default && \
     chmod 6444 /var/log/nginx && \
     chown -R www-data:www-data /var/www/html && \
-    rm -rf rootfs/ /etc/apache2/conf.d;
+    rm -rf rootfs/;
 
 # Running both php-fpm and NGINX in foreground to intercept connections
 STOPSIGNAL SIGTERM
