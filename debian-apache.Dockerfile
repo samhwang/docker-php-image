@@ -33,4 +33,4 @@ RUN cp -r rootfs/services.d/php-fpm /etc/services.d/php-fpm && \
 # Running both php-fpm and Apache in foreground to intercept connections
 STOPSIGNAL SIGTERM
 EXPOSE 80 443
-ENTRYPOINT ["/init"]
+ENTRYPOINT ["docker-php-entrypoint", "/init"]
