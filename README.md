@@ -9,22 +9,26 @@ A general Docker PHP base setup for development.
 ## What does it have
 
 - PHP 7.4
+  - Filesystem supports: PNG, JPEG, ZIP, Freetype, PQ, GD
+  - DB support: MySQL, PostgreSQL
 - Apache / NGINX server
-- Supervisor (to manage PHP and the server)
+- S6 (to supervise PHP and the server)
 - Debian / Alpine OS
 
-> Does it fit Docker's guideline of one process per container ?
+## Does it fit Docker's guideline of one process per container
 
 Sadly, no. PHP and its server pal (whether NGINX or Apache) gets
-too coupled together that it still is a murky ground decision on
-should they be separated. To me, I'm deciding on not opening a new
-can of worms right now and stick with the less granular option.
-This may change in the future.
+too coupled together that it gets way too granular and too much of
+a hassle to split them up. I have since adopted the just-containers'
+interpretation of "The Docker Way".
+
+More explanation can be found on their [s6-overlay](https://github.com/just-containers/s6-overlay#the-docker-way)
+repo.
 
 ## Supported tags
 
 - `latest`, `7.4`, `7.4-apache`
-- `7.4-apache-alpine`
+- `7.4-alpine`,`7.4-apache-alpine`
 - `7.4-nginx`
 - `7.4-nginx-alpine`
 
@@ -45,5 +49,5 @@ will resort to the default, which is Debian and Apache server.
 ```bash
 git clone git@github.com:samhwang/docker-php-image.git
 cd docker-php
-docker build -f [APACHE/nginx]-[BLANK/alpine].Dockerfile -t samhwang/php:latest .
+docker build -f docker/[apache/nginx]/[debian/alpine]/Dockerfile -t samhwang/php container
 ```
