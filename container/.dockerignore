@@ -1,6 +1,0 @@
-# Docker files
-.dockerignore
-
-# OS Specific files
-.DS_Store
-thumbs.db

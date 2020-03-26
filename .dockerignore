@@ -1,0 +1,14 @@
+# Docker files
+.dockerignore
+docker
+
+# OS Specific files
+.DS_Store
+thumbs.db
+
+# Project files
+.git/
+.github/
+.gitignore
+*.md
+LICENSE

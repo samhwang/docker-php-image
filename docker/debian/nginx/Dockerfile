@@ -20,8 +20,7 @@ RUN openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /etc/ssl/server.
     echo 'access_log = "/dev/stdout"' >> /usr/local/etc/php/php.ini;
 
 WORKDIR /var/www/html
-COPY public ./public
-COPY rootfs ./rootfs
+COPY container .
 RUN cp -r rootfs/services.d/php-fpm /etc/services.d/ && \
     cp -r rootfs/services.d/nginx /etc/services.d/ && \
     cp -r rootfs/nginx/ /etc/ && \
