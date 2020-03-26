@@ -1,0 +1,14 @@
+version: 1
+update_configs:
+  - package_manager: "docker"
+    directory: "/docker/alpine/apache/"
+    update_schedule: "daily"
+  - package_manager: "docker"
+    directory: "/docker/alpine/nginx/"
+    update_schedule: "daily"
+  - package_manager: "docker"
+    directory: "/docker/debian/apache/"
+    update_schedule: "daily"
+  - package_manager: "docker"
+    directory: "/docker/debian/nginx/"
+    update_schedule: "daily"
