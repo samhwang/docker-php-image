@@ -3,6 +3,7 @@
 ![LICENSE](https://img.shields.io/github/license/samhwang/docker-php-image?style=for-the-badge)
 ![Docker Cloud Automated build](https://img.shields.io/docker/cloud/automated/samhwang/php?style=for-the-badge)
 ![Docker Cloud Build Status](https://img.shields.io/docker/cloud/build/samhwang/php?style=for-the-badge)
+![Dependabot Status](https://api.dependabot.com/badges/status?host=github&repo=samhwang/docker-php-image)
 
 A general Docker PHP base setup for development.
 
