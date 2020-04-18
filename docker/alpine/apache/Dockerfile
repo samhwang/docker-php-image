@@ -1,4 +1,4 @@
-FROM php:7.4.4-fpm-alpine3.11
+FROM php:7.4.5-fpm-alpine3.11
 LABEL maintainer="Sam Huynh <samhwang2112.dev@gmail.com>"
 
 # Install Apache and other OS support for images.
