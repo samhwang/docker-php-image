@@ -2,7 +2,7 @@ FROM php:7.4.10-fpm-alpine3.12
 LABEL maintainer="Sam Huynh <samhwang2112.dev@gmail.com>"
 
 # Install Apache and other OS support for images.
-ARG S6_VERSION=1.22.1.0
+ARG S6_VERSION=2.0.0.1
 RUN curl -LkSso /tmp/s6-overlay-amd64.tar.gz https://github.com/just-containers/s6-overlay/releases/download/v${S6_VERSION}/s6-overlay-amd64.tar.gz && \
     tar xzf /tmp/s6-overlay-amd64.tar.gz -C / && \
     rm /tmp/s6-overlay-amd64.tar.gz && \
