@@ -1,4 +1,4 @@
-FROM php:7.4.9-fpm-buster
+FROM php:7.4.10-fpm-buster
 LABEL maintainer="Sam Huynh <samhwang2112.dev@gmail.com>"
 
 # Install Apache and other OS support for images.
