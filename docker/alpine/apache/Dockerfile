@@ -3,7 +3,8 @@ LABEL maintainer="Sam Huynh <samhwang2112.dev@gmail.com>"
 
 # Install Apache and other OS support for images.
 ARG S6_VERSION=2.0.0.1
-RUN curl -LkSso /tmp/s6-overlay-amd64.tar.gz https://github.com/just-containers/s6-overlay/releases/download/v${S6_VERSION}/s6-overlay-amd64.tar.gz && \
+RUN set -xe && \
+    curl -LkSso /tmp/s6-overlay-amd64.tar.gz https://github.com/just-containers/s6-overlay/releases/download/v${S6_VERSION}/s6-overlay-amd64.tar.gz && \
     tar xzf /tmp/s6-overlay-amd64.tar.gz -C / && \
     rm /tmp/s6-overlay-amd64.tar.gz && \
     apk update && \
@@ -21,7 +22,8 @@ RUN curl -LkSso /tmp/s6-overlay-amd64.tar.gz https://github.com/just-containers/
     rm -rf /var/cache/apk/*;
 
 # Configure Apache, PHP Modules and S6
-RUN openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /etc/ssl/server.key -out /etc/ssl/server.crt -subj "/C=AU/ST=VIC/L=Melbourne/O=Localhost/CN=Localhost"; \
+RUN set -xe && \
+    openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /etc/ssl/server.key -out /etc/ssl/server.crt -subj "/C=AU/ST=VIC/L=Melbourne/O=Localhost/CN=Localhost"; \
     docker-php-ext-configure gd --with-jpeg=/usr/include --with-freetype=/usr/include && \
     docker-php-ext-install \
         pdo_mysql \
