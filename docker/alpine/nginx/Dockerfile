@@ -1,12 +1,14 @@
 FROM php:7.4.10-fpm-alpine3.12
 LABEL maintainer="Sam Huynh <samhwang2112.dev@gmail.com>"
 
-# Install NGINX and other OS support for images.
+# Install S6 Overlay
 ARG S6_VERSION=2.0.0.1
-RUN set -xe && \
-    curl -LkSso /tmp/s6-overlay-amd64.tar.gz https://github.com/just-containers/s6-overlay/releases/download/v${S6_VERSION}/s6-overlay-amd64.tar.gz && \
+RUN curl -LkSso /tmp/s6-overlay-amd64.tar.gz https://github.com/just-containers/s6-overlay/releases/download/v${S6_VERSION}/s6-overlay-amd64.tar.gz && \
     tar xzf /tmp/s6-overlay-amd64.tar.gz -C / && \
-    rm /tmp/s6-overlay-amd64.tar.gz && \
+    rm /tmp/s6-overlay-amd64.tar.gz;
+
+# Install NGINX and other OS support for images.
+RUN set -xe && \
     apk update && \
     apk add --no-cache \
         bash \
@@ -36,8 +38,10 @@ RUN set -xe && \
     apk del build-deps && \
     docker-php-ext-enable mongodb redis && \
     echo 'error_log = "/dev/stderr"' >> /usr/local/etc/php/php.ini && \
-    echo 'access_log = "/dev/stdout"' >> /usr/local/etc/php/php.ini && \
-    mkdir -p /run/nginx;
+    echo 'access_log = "/dev/stdout"' >> /usr/local/etc/php/php.ini;
+
+# Add NGINX run folder
+RUN mkdir -p /run/nginx
 
 WORKDIR /var/www/html
 COPY container .
