@@ -7,13 +7,26 @@ RUN curl -LkSso /tmp/s6-overlay-amd64.tar.gz https://github.com/just-containers/
     tar xzf /tmp/s6-overlay-amd64.tar.gz -C / && \
     rm /tmp/s6-overlay-amd64.tar.gz && \
     apk update && \
-    apk add --no-cache bash nginx libjpeg-turbo-dev libpng-dev freetype-dev libzip-dev postgresql-dev && \
+    apk add --no-cache \
+        bash \
+        nginx \
+        libjpeg-turbo-dev \
+        libpng-dev \
+        freetype-dev \
+        libzip-dev \
+        postgresql-dev && \
     rm -rf /var/cache/apk/*;
 
 # Configure NGINX, PHP Modules and Supervisor
 RUN openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /etc/ssl/server.key -out /etc/ssl/server.crt -subj "/C=AU/ST=VIC/L=Melbourne/O=Localhost/CN=Localhost"; \
     docker-php-ext-configure gd --with-jpeg=/usr/include --with-freetype=/usr/include && \
-    docker-php-ext-install pdo_mysql mysqli pdo_pgsql pgsql gd zip; \
+    docker-php-ext-install \
+        pdo_mysql \
+        mysqli \
+        pdo_pgsql \
+        pgsql \
+        gd \
+        zip && \
     mkdir -p /run/nginx && \
     echo 'error_log = "/dev/stderr"' >> /usr/local/etc/php/php.ini && \
     echo 'access_log = "/dev/stdout"' >> /usr/local/etc/php/php.ini;
