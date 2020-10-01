@@ -7,7 +7,13 @@ RUN curl -LkSso /tmp/s6-overlay-amd64.tar.gz https://github.com/just-containers/
     tar xzf /tmp/s6-overlay-amd64.tar.gz -C / && \
     rm /tmp/s6-overlay-amd64.tar.gz && \
     apt-get update && \
-    apt-get install -y --no-install-recommends apache2 libjpeg62-turbo-dev libpng-dev libfreetype6-dev libzip-dev libpq-dev && \
+    apt-get install -y --no-install-recommends \
+        apache2 \
+        libjpeg62-turbo-dev \
+        libpng-dev \
+        libfreetype6-dev \
+        libzip-dev \
+        libpq-dev && \
     apt-get autoremove -y && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/* /usr/share/man/* /usr/share/doc/*;
@@ -15,8 +21,19 @@ RUN curl -LkSso /tmp/s6-overlay-amd64.tar.gz https://github.com/just-containers/
 # Configure Apache, PHP Modules and S6
 RUN openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /etc/ssl/server.key -out /etc/ssl/server.crt -subj "/C=AU/ST=VIC/L=Melbourne/O=Localhost/CN=Localhost"; \
     docker-php-ext-configure gd --with-jpeg=/usr/include --with-freetype=/usr/include && \
-    docker-php-ext-install pdo_mysql mysqli pdo_pgsql pgsql gd zip && \
-    a2enmod macro actions proxy_fcgi rewrite ssl && \
+    docker-php-ext-install \
+        pdo_mysql \
+        mysqli \
+        pdo_pgsql \
+        pgsql \
+        gd \
+        zip && \
+    a2enmod \
+        macro \
+        actions \
+        proxy_fcgi \
+        rewrite \
+        ssl && \
     echo 'error_log = "/dev/stderr"' >> /usr/local/etc/php/php.ini && \
     echo 'access_log = "/dev/stdout"' >> /usr/local/etc/php/php.ini;
 
