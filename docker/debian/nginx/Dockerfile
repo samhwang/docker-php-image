@@ -30,6 +30,8 @@ RUN set -xe && \
         pgsql \
         gd \
         zip && \
+    pecl install mongodb redis && \
+    pecl clear-cache && \
     echo 'error_log = "/dev/stderr"' >> /usr/local/etc/php/php.ini && \
     echo 'access_log = "/dev/stdout"' >> /usr/local/etc/php/php.ini;
 

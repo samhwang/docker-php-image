@@ -22,6 +22,7 @@ RUN set -xe && \
 # Configure PHP Modules and Apache
 RUN set -xe && \
     openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /etc/ssl/server.key -out /etc/ssl/server.crt -subj "/C=AU/ST=VIC/L=Melbourne/O=Localhost/CN=Localhost"; \
+    pear config-set php_ini "$PHP_INI_DIR" && \
     docker-php-ext-configure gd --with-jpeg=/usr/include --with-freetype=/usr/include && \
     docker-php-ext-install \
         pdo_mysql \
@@ -30,6 +31,8 @@ RUN set -xe && \
         pgsql \
         gd \
         zip && \
+    pecl install mongodb redis && \
+    pecl clear-cache && \        
     echo 'error_log = "/dev/stderr"' >> /usr/local/etc/php/php.ini && \
     echo 'access_log = "/dev/stdout"' >> /usr/local/etc/php/php.ini && \
     a2enmod \
