@@ -21,7 +21,7 @@ RUN set -xe && \
         postgresql-dev && \
     rm -rf /var/cache/apk/*;
 
-# Configure Apache, PHP Modules and S6
+# Configure PHP Modules and Apache
 RUN set -xe && \
     openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /etc/ssl/server.key -out /etc/ssl/server.crt -subj "/C=AU/ST=VIC/L=Melbourne/O=Localhost/CN=Localhost"; \
     docker-php-ext-configure gd --with-jpeg=/usr/include --with-freetype=/usr/include && \
@@ -32,14 +32,14 @@ RUN set -xe && \
         pgsql \
         gd \
         zip && \
+    echo 'error_log = "/dev/stderr"' >> /usr/local/etc/php/php.ini && \
+    echo 'access_log = "/dev/stdout"' >> /usr/local/etc/php/php.ini && \
     sed -i 's@^#LoadModule actions_module modules/mod_actions\.so@LoadModule actions_module modules/mod_actions.so@' /etc/apache2/httpd.conf && \
     sed -i 's@^#LoadModule macro_module modules/mod_macro\.so@LoadModule macro_module modules/mod_macro.so@' /etc/apache2/httpd.conf && \
     sed -i 's@^#LoadModule rewrite_module modules/mod_rewrite\.so@LoadModule rewrite_module modules/mod_rewrite.so@' /etc/apache2/httpd.conf && \
     sed -ri -e 's!DocumentRoot "/var/www/localhost/htdocs"!DocumentRoot "/var/www/html/public/"!g' /etc/apache2/httpd.conf && \
     echo 'Include /etc/apache2/sites-enabled/*.conf' >> /etc/apache2/httpd.conf && \
-    ln -s /usr/sbin/httpd /usr/sbin/apachectl && \
-    echo 'error_log = "/dev/stderr"' >> /usr/local/etc/php/php.ini && \
-    echo 'access_log = "/dev/stdout"' >> /usr/local/etc/php/php.ini;
+    ln -s /usr/sbin/httpd /usr/sbin/apachectl;
 
 WORKDIR /var/www/html
 COPY container .
