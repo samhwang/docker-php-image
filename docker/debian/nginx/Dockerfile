@@ -19,7 +19,7 @@ RUN set -xe && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/* /usr/share/man/* /usr/share/doc/*;
 
-# Configure NGINX, PHP Modules and S6
+# Configure PHP Modules
 RUN set -xe && \
     openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /etc/ssl/server.key -out /etc/ssl/server.crt -subj "/C=AU/ST=VIC/L=Melbourne/O=Localhost/CN=Localhost"; \
     docker-php-ext-configure gd --with-jpeg=/usr/include --with-freetype=/usr/include && \

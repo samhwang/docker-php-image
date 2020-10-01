@@ -19,7 +19,7 @@ RUN set -xe && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/* /usr/share/man/* /usr/share/doc/*;
 
-# Configure Apache, PHP Modules and S6
+# Configure PHP Modules and Apache
 RUN set -xe && \
     openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /etc/ssl/server.key -out /etc/ssl/server.crt -subj "/C=AU/ST=VIC/L=Melbourne/O=Localhost/CN=Localhost"; \
     docker-php-ext-configure gd --with-jpeg=/usr/include --with-freetype=/usr/include && \
@@ -30,14 +30,14 @@ RUN set -xe && \
         pgsql \
         gd \
         zip && \
+    echo 'error_log = "/dev/stderr"' >> /usr/local/etc/php/php.ini && \
+    echo 'access_log = "/dev/stdout"' >> /usr/local/etc/php/php.ini && \
     a2enmod \
         macro \
         actions \
         proxy_fcgi \
         rewrite \
-        ssl && \
-    echo 'error_log = "/dev/stderr"' >> /usr/local/etc/php/php.ini && \
-    echo 'access_log = "/dev/stdout"' >> /usr/local/etc/php/php.ini;
+        ssl;
 
 WORKDIR /var/www/html
 COPY container .
