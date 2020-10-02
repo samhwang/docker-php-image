@@ -11,7 +11,8 @@ RUN curl -LkSso /tmp/s6-overlay-amd64.tar.gz https://github.com/just-containers/
 RUN set -xe && \
     apt-get update && \
     apt-get install -y --no-install-recommends \
-        nginx \
+        nginx && \
+    apt-get install -y --no-install-recommends \
         libjpeg62-turbo-dev \
         libpng-dev \
         libfreetype6-dev \
