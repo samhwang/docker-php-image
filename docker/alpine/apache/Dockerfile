@@ -11,11 +11,11 @@ RUN curl -LkSso /tmp/s6-overlay-amd64.tar.gz https://github.com/just-containers/
 RUN set -xe && \
     apk update && \
     apk add --no-cache \
-        bash \
         apache2 \
         apache2-proxy \
         apache2-ssl && \
     apk add --no-cache \
+        bash \
         libjpeg-turbo-dev \
         libpng-dev \
         freetype-dev \
