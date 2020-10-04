@@ -1,4 +1,4 @@
-FROM php:7.4.10-fpm-buster
+FROM php:7.4.11-fpm-buster
 LABEL maintainer="Sam Huynh <samhwang2112.dev@gmail.com>"
 
 # Install S6 Overlay
@@ -35,7 +35,7 @@ RUN set -xe && \
         gd \
         zip && \
     pecl install mongodb redis && \
-    pecl clear-cache && \        
+    pecl clear-cache && \
     echo 'error_log = "/dev/stderr"' >> /usr/local/etc/php/php.ini && \
     echo 'access_log = "/dev/stdout"' >> /usr/local/etc/php/php.ini;
 
