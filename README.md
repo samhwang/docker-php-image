@@ -9,7 +9,7 @@ A general Docker PHP base setup for development.
 
 ## What does it have
 
-- PHP 7.4
+- PHP 8.0
   - Filesystem supports: PNG, JPEG, ZIP, Freetype, PQ, GD
   - DB support: MySQL, PostgreSQL
 - Apache / NGINX server
@@ -28,10 +28,10 @@ repo.
 
 ## Supported tags
 
-- `latest`, `7.4`, `7.4-apache`
-- `7.4-alpine`,`7.4-apache-alpine`
-- `7.4-nginx`
-- `7.4-nginx-alpine`
+- `latest`, `8.0`, `8.0-apache`
+- `8.0-alpine`,`8.0-apache-alpine`
+- `8.0-nginx`
+- `8.0-nginx-alpine`
 
 ## Running the image
 
