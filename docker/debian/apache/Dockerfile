@@ -2,7 +2,7 @@ FROM php:7.4.12-fpm-buster
 LABEL maintainer="Sam Huynh <samhwang2112.dev@gmail.com>"
 
 # Install S6 Overlay
-ARG S6_VERSION=2.0.0.1
+ARG S6_VERSION=2.1.0.2
 RUN curl -LkSso /tmp/s6-overlay-amd64.tar.gz https://github.com/just-containers/s6-overlay/releases/download/v${S6_VERSION}/s6-overlay-amd64.tar.gz && \
     tar xzf /tmp/s6-overlay-amd64.tar.gz -C / && \
     rm /tmp/s6-overlay-amd64.tar.gz;
