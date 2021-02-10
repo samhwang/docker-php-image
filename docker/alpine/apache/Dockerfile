@@ -54,7 +54,8 @@ RUN set -xe && \
 
 WORKDIR /var/www/html
 COPY container .
-RUN cp -r rootfs/services.d/php-fpm /etc/services.d/php-fpm && \
+RUN set -xe && \
+    cp -r rootfs/services.d/php-fpm /etc/services.d/php-fpm && \
     cp -r rootfs/services.d/apache2 /etc/services.d/apache2 && \
     cp -r rootfs/apache2/ /etc/ && \
     chmod -R 775 /var/www && \
