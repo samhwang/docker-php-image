@@ -40,11 +40,11 @@ RUN set -xe && \
 
 WORKDIR /var/www/html
 COPY container .
-    cp -r rootfs/services.d/nginx /etc/services.d/ && \
 RUN set -xe && \
-    cp -r rootfs/services.d/php-fpm /etc/services.d/ && \
+    cp -r rootfs/services.d/php-fpm /etc/services.d/php-fpm && \
+    cp -r rootfs/services.d/nginx /etc/services.d/nginx && \
     cp -r rootfs/nginx/ /etc/ && \
-    mv /etc/nginx/conf.d/default.conf /etc/nginx/sites-enabled/default && \
+    rm /etc/nginx/sites-enabled/default && \
     chmod 6444 /var/log/nginx && \
     chown -R www-data:www-data /var/www/html && \
     rm -rf rootfs/;

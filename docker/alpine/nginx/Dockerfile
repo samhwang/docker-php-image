@@ -46,10 +46,12 @@ RUN mkdir -p /run/nginx
 
 WORKDIR /var/www/html
 COPY container .
-    cp -r rootfs/services.d/nginx /etc/services.d/ && \
 RUN set -xe && \
-    cp -r rootfs/services.d/php-fpm /etc/services.d/ && \
+    cp -r rootfs/services.d/php-fpm /etc/services.d/php-fpm && \
+    cp -r rootfs/services.d/nginx /etc/services.d/nginx && \
     cp -r rootfs/nginx/ /etc/ && \
+    rm /etc/nginx/http.d/default.conf && \
+    mv /etc/nginx/sites-enabled/default.conf /etc/nginx/http.d/default.conf && \
     chmod -R 775 /var/www && \
     chown -R www-data:www-data /var/www/html && \
     rm -rf rootfs/;
