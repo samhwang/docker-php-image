@@ -1,4 +1,4 @@
-FROM php:8.0.5-fpm-alpine3.13
+FROM php:8.0.6-fpm-alpine3.13
 LABEL maintainer="Sam Huynh <samhwang2112.dev@gmail.com>"
 
 # Install S6 Overlay
