@@ -1,4 +1,4 @@
-FROM php:8.0.7-fpm-buster
+FROM php:8.1.0alpha2-fpm-buster
 LABEL maintainer="Sam Huynh <samhwang2112.dev@gmail.com>"
 
 # Install S6 Overlay
